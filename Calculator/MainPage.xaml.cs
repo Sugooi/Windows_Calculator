@@ -203,14 +203,9 @@ namespace Calculator
 
             for (int i = 0; i < results.Length; i++)
             {
-                try
-                {
+                
                     if ((results[i] == '+' || results[i] == '-' || results[i] == '*' || results[i] == '/' || results[i] == '%') && (results[i + 1] == '+' || results[i + 1] == '-' || results[i + 1] == '*' || results[i + 1] == '/' || results[i + 1] == '%')) { return; }
-                }
-                catch {
-                    return;
-                }
-
+              
                 if (results[i] == '+')
                 {
 
