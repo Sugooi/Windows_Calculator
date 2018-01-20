@@ -28,8 +28,6 @@ namespace Calculator
         float x, y, z;
         String a="", b="";
 
-
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -44,9 +42,18 @@ namespace Calculator
         {
             String n = result.Text;
 
+            Char[] a;
 
-            if(n.Length>0)
-            n = n.Remove(n.Length - 1);
+            a = n.ToCharArray();
+
+            if (n.Length > 0)
+            {
+                if (a[n.Length - 1].Equals('+') || a[n.Length - 1].Equals('-') || a[n.Length - 1].Equals('*') || a[n.Length - 1].Equals('/') || a[n.Length - 1].Equals('%')) { count--; }
+
+                n = n.Remove(n.Length - 1);
+
+            }
+           
 
             result.Text = n;
         }
@@ -60,15 +67,11 @@ namespace Calculator
         {
             result.Text = result.Text + "0";
 
-        
-
         }
 
         private void _1_Click(object sender, RoutedEventArgs e)
         {
             result.Text = result.Text + "1";
-
-           
         }
 
         private void _2_Click(object sender, RoutedEventArgs e)
@@ -161,7 +164,9 @@ namespace Calculator
             count = 0;
         }
 
-        public String return_a(int i) {
+        
+
+        public void setabxy(int i) {
 
             a = "";
             for (int j = 0; j < i; j++)
@@ -169,20 +174,22 @@ namespace Calculator
                 a = a + results[j];
             }
 
-            return a;
-
-        }
-
-        public String return_b(int i)
-        {
-
             b = "";
-            for (int j = i+1; j < results.Length; j++)
+            for (int j = i + 1; j < results.Length; j++)
             {
                 b = b + results[j];
             }
 
-            return b;
+
+            try
+            {
+                x = float.Parse(a);
+                y = float.Parse(b);
+            }
+            catch
+            {
+                result.Text = "Error!";
+            }
 
         }
 
@@ -196,7 +203,13 @@ namespace Calculator
 
             for (int i = 0; i < results.Length; i++)
             {
-
+                try
+                {
+                    if ((results[i] == '+' || results[i] == '-' || results[i] == '*' || results[i] == '/' || results[i] == '%') && (results[i + 1] == '+' || results[i + 1] == '-' || results[i + 1] == '*' || results[i + 1] == '/' || results[i + 1] == '%')) { return; }
+                }
+                catch {
+                    return;
+                }
 
                 if (results[i] == '+')
                 {
@@ -204,11 +217,7 @@ namespace Calculator
 
 
 
-                    return_a(i);
-                    return_b(i);
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
+                    setabxy(i);
 
                     z = operate(x, y, '+');
 
@@ -218,17 +227,11 @@ namespace Calculator
 
                 }
 
-                if (results[i] == '-')
+               else if (results[i] == '-')
                 {
 
-                    return_a(i);
-                    return_b(i);
 
-
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
-
+                    setabxy(i);
                     z = operate(x, y, '-');
 
                     result.Text = z.ToString();
@@ -236,13 +239,9 @@ namespace Calculator
 
 
                 }
-                if (results[i] == '*')
+              else  if (results[i] == '*')
                 {
-                    return_a(i);
-                    return_b(i);
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
+                    setabxy(i);
 
                     z = operate(x, y, '*');
 
@@ -251,15 +250,9 @@ namespace Calculator
 
 
                 }
-                if (results[i] == '/')
+              else  if (results[i] == '/')
                 {
-
-                    return_a(i);
-                    return_b(i);
-
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
+                    setabxy(i);
 
                     z = operate(x, y, '/');
 
@@ -268,22 +261,21 @@ namespace Calculator
 
 
                 }
-                if (results[i] == '%')
+              else  if (results[i] == '%')
                 {
 
-                    return_a(i);
-                    return_b(i);
+                    setabxy(i);
 
-                    float x, y, z;
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
                     z = x % y;
 
                     result.Text = z.ToString();
 
 
 
+                }
+                else
+                {
+                    
                 }
 
             }
@@ -378,6 +370,8 @@ namespace Calculator
             for (int i = 0; i < results.Length; i++)
             {
 
+                if ((results[i] == '+' || results[i] == '-' || results[i] == '*' || results[i] == '/' || results[i] == '%') && (results[i + 1] == '+' || results[i + 1] == '-' || results[i + 1] == '*' || results[i + 1] == '/' || results[i + 1] == '%')) { return; }
+
 
                 if (results[i] == '+')
                 {
@@ -385,11 +379,7 @@ namespace Calculator
 
 
 
-                    return_a(i);
-                    return_b(i);
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
+                    setabxy(i);
 
                     z = operate(x, y, '+');
 
@@ -402,13 +392,8 @@ namespace Calculator
                 if (results[i] == '-')
                 {
 
-                    return_a(i);
-                    return_b(i);
+                    setabxy(i);
 
-
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
 
                     z = operate(x, y, '-');
 
@@ -419,11 +404,8 @@ namespace Calculator
                 }
                 if (results[i] == '*')
                 {
-                    return_a(i);
-                    return_b(i);
+                    setabxy(i);
 
-                    x = float.Parse(a);
-                    y = float.Parse(b);
 
                     z = operate(x, y, '*');
 
@@ -435,12 +417,8 @@ namespace Calculator
                 if (results[i] == '/')
                 {
 
-                    return_a(i);
-                    return_b(i);
+                    setabxy(i);
 
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
 
                     z = operate(x, y, '/');
 
@@ -452,13 +430,8 @@ namespace Calculator
                 if (results[i] == '%')
                 {
 
-                    return_a(i);
-                    return_b(i);
+                    setabxy(i);
 
-                    float x, y, z;
-
-                    x = float.Parse(a);
-                    y = float.Parse(b);
                     z = x % y;
 
                     result.Text = z.ToString()+previous_op;
