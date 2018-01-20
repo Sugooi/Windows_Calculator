@@ -27,6 +27,7 @@ namespace Calculator
         char previous_op;
         float x, y, z;
         String a="", b="";
+        int dcount = 0;
 
         public MainPage()
         {
@@ -48,8 +49,8 @@ namespace Calculator
 
             if (n.Length > 0)
             {
-                if (a[n.Length - 1].Equals('+') || a[n.Length - 1].Equals('-') || a[n.Length - 1].Equals('*') || a[n.Length - 1].Equals('/') || a[n.Length - 1].Equals('%')) { count--; }
-
+                if (a[n.Length - 1].Equals('+') || a[n.Length - 1].Equals('-') || a[n.Length - 1].Equals('*') || a[n.Length - 1].Equals('/') || a[n.Length - 1].Equals('%') ){ count--; }
+                if (a[n.Length - 1].Equals('.')) { dcount--; }
                 n = n.Remove(n.Length - 1);
 
             }
@@ -147,12 +148,16 @@ namespace Calculator
                 calc();
                 count--;
             }
+            dcount = 0;
+
         }
 
         private void c_Click(object sender, RoutedEventArgs e)
         {
             result.Text = "";
             count = 0;
+            dcount = 0;
+
 
 
 
@@ -218,7 +223,7 @@ namespace Calculator
 
                     result.Text = z.ToString();
 
-
+                    
 
                 }
 
@@ -307,6 +312,8 @@ namespace Calculator
                 count--;
             }
 
+            dcount = 0;
+
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -320,6 +327,9 @@ namespace Calculator
                 calc();
                 count--;
             }
+
+            dcount = 0;
+
 
 
         }
@@ -335,6 +345,7 @@ namespace Calculator
                 calc();
                 count--;
             }
+            dcount = 0;
 
         }
 
@@ -349,6 +360,9 @@ namespace Calculator
                 calc();
                 count--;
             }
+
+            dcount = 0;
+
 
         }
 
@@ -365,7 +379,8 @@ namespace Calculator
             for (int i = 0; i < results.Length; i++)
             {
 
-                if ((results[i] == '+' || results[i] == '-' || results[i] == '*' || results[i] == '/' || results[i] == '%') && (results[i + 1] == '+' || results[i + 1] == '-' || results[i + 1] == '*' || results[i + 1] == '/' || results[i + 1] == '%')) { return; }
+                if ((results[i] == '+' || results[i] == '-' || results[i] == '*' || results[i] == '/' || results[i] == '%') && (results[i + 1] == '+' || results[i + 1] == '-' || results[i + 1] == '*' || results[i + 1] == '/' || results[i + 1] == '%')) {
+                    return; }
 
 
                 if (results[i] == '+')
@@ -441,7 +456,12 @@ namespace Calculator
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            result.Text = result.Text + ".";
+
+            if (dcount == 0)
+            {
+                result.Text = result.Text + ".";
+                dcount++;
+            }
 
         }
     }
