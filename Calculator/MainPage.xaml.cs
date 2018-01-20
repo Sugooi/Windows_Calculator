@@ -158,6 +158,7 @@ namespace Calculator
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             calculate();
+            count = 0;
         }
 
         public String return_a(int i) {

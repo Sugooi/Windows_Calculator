@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\Adil\source\repos\Calculator\Calculator\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-01-20T04:45:31.924</Modified>
+      <Modified>2018-01-20T05:00:21.325</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Adil\source\repos\Calculator\Calculator\bin\x86\Debug\Calculator.exe">
       <PackagePath>entrypoint\Calculator.exe</PackagePath>
-      <Modified>2018-01-20T04:45:31.623</Modified>
+      <Modified>2018-01-20T05:00:21.032</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adil\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -548,7 +548,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adil\source\repos\Calculator\Calculator\bin\x86\Debug\Core\Calculator.exe">
       <PackagePath>Calculator.exe</PackagePath>
-      <Modified>2018-01-20T04:45:31.918</Modified>
+      <Modified>2018-01-20T05:00:21.321</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
