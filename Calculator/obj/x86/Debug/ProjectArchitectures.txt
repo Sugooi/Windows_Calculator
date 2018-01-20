@@ -1,0 +1,1 @@
+C:\Users\Adil\source\repos\Calculator\Calculator\Calculator.csproj;x86
